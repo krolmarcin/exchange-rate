@@ -15,6 +15,17 @@ public class ExchangeCalculationResult {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
+    public ExchangeCalculationResult() {
+    }
+
+    public ExchangeCalculationResult(String from, String to, BigDecimal amount, BigDecimal calculatedAmount, LocalDate date) {
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
+        this.calculatedAmount = calculatedAmount;
+        this.date = date;
+    }
+
     public String getFrom() {
         return from;
     }
