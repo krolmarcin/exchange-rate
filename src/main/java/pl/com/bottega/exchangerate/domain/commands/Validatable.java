@@ -9,6 +9,10 @@ public interface Validatable {
 
     void validate(ValidationErrors errors);
 
+    default boolean isEmpty(Object o) {
+        return (o == null || o.toString().trim().isEmpty());
+    }
+
     class ValidationErrors {
 
         private Map<String, Set<String>> errors = new HashMap<>();
