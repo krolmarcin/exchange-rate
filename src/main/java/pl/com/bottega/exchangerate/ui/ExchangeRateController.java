@@ -1,15 +1,11 @@
 package pl.com.bottega.exchangerate.ui;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import pl.com.bottega.exchangerate.api.ExchangeCalculationResult;
 import pl.com.bottega.exchangerate.api.ExchangeCalculator;
-import pl.com.bottega.exchangerate.domain.AdminPanel;
+import pl.com.bottega.exchangerate.api.AdminPanel;
 import pl.com.bottega.exchangerate.domain.commands.CalculateExchangeCommand;
 import pl.com.bottega.exchangerate.domain.commands.CreateExchangeRateCommand;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @RestController
 public class ExchangeRateController {
@@ -18,8 +14,9 @@ public class ExchangeRateController {
 
     private ExchangeCalculator exchangeCalculator;
 
-    public ExchangeRateController(AdminPanel adminPanel) {
+    public ExchangeRateController(AdminPanel adminPanel, ExchangeCalculator exchangeCalculator) {
         this.adminPanel = adminPanel;
+        this.exchangeCalculator = exchangeCalculator;
     }
 
     @PutMapping("/exchange-rate")
@@ -27,7 +24,7 @@ public class ExchangeRateController {
         adminPanel.createExchangeRate(cmd);
     }
 
-    @GetMapping("/calculate")
+    @GetMapping("/calculation")
     public ExchangeCalculationResult calculate(CalculateExchangeCommand cmd) {
         return exchangeCalculator.calculate(cmd);
     }

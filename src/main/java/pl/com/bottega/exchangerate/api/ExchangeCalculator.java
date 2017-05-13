@@ -2,10 +2,8 @@ package pl.com.bottega.exchangerate.api;
 
 import pl.com.bottega.exchangerate.domain.commands.CalculateExchangeCommand;
 
-public class ExchangeCalculator {
+public interface ExchangeCalculator {
 
-    public ExchangeCalculationResult calculate(CalculateExchangeCommand cmd) {
-        return null;
-    }
+    ExchangeCalculationResult calculate(CalculateExchangeCommand cmd);
 
 }

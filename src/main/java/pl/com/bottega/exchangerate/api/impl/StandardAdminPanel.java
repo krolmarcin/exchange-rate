@@ -1,7 +1,7 @@
 package pl.com.bottega.exchangerate.api.impl;
 
 import org.springframework.transaction.annotation.Transactional;
-import pl.com.bottega.exchangerate.domain.AdminPanel;
+import pl.com.bottega.exchangerate.api.AdminPanel;
 import pl.com.bottega.exchangerate.domain.ExchangeRate;
 import pl.com.bottega.exchangerate.domain.ExchangeRepository;
 import pl.com.bottega.exchangerate.domain.commands.CreateExchangeRateCommand;

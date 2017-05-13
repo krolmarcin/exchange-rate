@@ -1,4 +1,4 @@
-package pl.com.bottega.exchangerate.domain;
+package pl.com.bottega.exchangerate.api;
 
 import pl.com.bottega.exchangerate.api.ExchangeCalculationResult;
 import pl.com.bottega.exchangerate.domain.commands.CalculateExchangeCommand;
