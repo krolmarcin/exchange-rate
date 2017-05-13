@@ -3,6 +3,7 @@ package pl.com.bottega.exchangerate.infrastructure;
 import pl.com.bottega.exchangerate.api.ExchangeCatalog;
 import pl.com.bottega.exchangerate.api.ExchangeRateDto;
 import pl.com.bottega.exchangerate.domain.ExchangeRate;
+import pl.com.bottega.exchangerate.domain.NoRateException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,9 +21,13 @@ public class JPAExchangeCatalog implements ExchangeCatalog {
         Query query = entityManager.createQuery(queryMessage);
         query.setParameter("date", date);
         query.setParameter("currency", currency);
-        ExchangeRate exchangeRate = (ExchangeRate) query.getResultList().get(0);
-        ExchangeRateDto exchangeRateDto = createRateDto(exchangeRate);
-        return exchangeRateDto;
+        if (query.getResultList().isEmpty())
+            throw new NoRateException("no found rate");
+        else {
+            ExchangeRate exchangeRate = (ExchangeRate) query.getResultList().get(0);
+            ExchangeRateDto exchangeRateDto = createRateDto(exchangeRate);
+            return exchangeRateDto;
+        }
     }
 
     private ExchangeRateDto createRateDto(ExchangeRate exchangeRate) {

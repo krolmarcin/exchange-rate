@@ -56,7 +56,6 @@ public class CalculateExchangeCommand implements Validatable {
             errors.add("to", "is required");
         if (isEmpty(amount))
             errors.add("amount", "is required");
-
     }
 
 }
