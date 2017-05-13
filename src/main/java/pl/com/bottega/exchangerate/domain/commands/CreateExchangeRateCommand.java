@@ -30,7 +30,7 @@ public class CreateExchangeRateCommand implements Validatable {
             errors.add("currency", "has invalid format");
         if (rate == null || isEmpty(rate))
             errors.add("rate", "is required");
-        if (rate!= null && (rate.compareTo(BigDecimal.ZERO) <= 0))
+        if (rate != null && (rate.compareTo(BigDecimal.ZERO) < 0))
             errors.add("rate", "must be > than 0.0");
     }
 
