@@ -56,6 +56,11 @@ public class CalculateExchangeCommand implements Validatable {
             errors.add("to", "is required");
         if (isEmpty(amount))
             errors.add("amount", "is required");
+        if (from != null && to != null && date != null && amount != null && from.equals(to)) {
+            errors.add("from", "must be different than to");
+            errors.add("to", "must be different than from");
+        }
+
     }
 
 }
