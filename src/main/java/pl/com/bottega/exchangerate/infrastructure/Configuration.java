@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import pl.com.bottega.exchangerate.api.ExchangeCalculator;
 import pl.com.bottega.exchangerate.api.impl.StandardAdminPanel;
 import pl.com.bottega.exchangerate.api.AdminPanel;
-import pl.com.bottega.exchangerate.api.impl.StandardExchangeCalulator;
+import pl.com.bottega.exchangerate.api.impl.StandardExchangeCalculator;
 import pl.com.bottega.exchangerate.domain.ExchangeRepository;
 
 @org.springframework.context.annotation.Configuration
@@ -17,7 +17,7 @@ public class Configuration {
 
     @Bean
     public ExchangeCalculator exchangeCalculator(ExchangeRepository exchangeRepository) {
-        return new StandardExchangeCalulator(exchangeRepository);
+        return new StandardExchangeCalculator(exchangeRepository);
     }
 
     @Bean

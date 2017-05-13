@@ -7,11 +7,11 @@ import pl.com.bottega.exchangerate.domain.ExchangeRepository;
 import pl.com.bottega.exchangerate.domain.commands.CalculateExchangeCommand;
 
 @Transactional
-public class StandardExchangeCalulator implements ExchangeCalculator {
+public class StandardExchangeCalculator implements ExchangeCalculator {
 
     private ExchangeRepository exchangeRepository;
 
-    public StandardExchangeCalulator(ExchangeRepository exchangeRepository) {
+    public StandardExchangeCalculator(ExchangeRepository exchangeRepository) {
         this.exchangeRepository = exchangeRepository;
     }
 
