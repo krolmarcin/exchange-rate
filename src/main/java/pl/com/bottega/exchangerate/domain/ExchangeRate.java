@@ -23,7 +23,7 @@ public class ExchangeRate {
     }
 
     public ExchangeRate(CreateExchangeRateCommand cmd) {
-        this.date = LocalDate.parse(cmd.getDate());
+        this.date = cmd.getDate();
         this.currency = cmd.getCurrency();
         this.rate = cmd.getRate();
     }

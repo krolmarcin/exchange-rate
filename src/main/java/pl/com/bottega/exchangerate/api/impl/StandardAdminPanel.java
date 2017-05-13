@@ -18,7 +18,12 @@ public class StandardAdminPanel implements AdminPanel {
     @Override
     public void createExchangeRate(CreateExchangeRateCommand cmd) {
         ExchangeRate exchangeRate = new ExchangeRate(cmd);
-        exchangeRepository.put(exchangeRate);
+
+        if (exchangeRepository.isExists(cmd.getDate(), cmd.getCurrency())) {
+            exchangeRepository.update(exchangeRate);
+        } else {
+            exchangeRepository.put(exchangeRate);
+        }
     }
 
 }

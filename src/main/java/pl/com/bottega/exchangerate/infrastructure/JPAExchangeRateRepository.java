@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.time.LocalDate;
 
 public class JPAExchangeRateRepository implements ExchangeRepository {
 
@@ -18,18 +19,22 @@ public class JPAExchangeRateRepository implements ExchangeRepository {
 
     @Override
     public void put(ExchangeRate exchangeRate) {
-        if (exchangeRateExists(exchangeRate))
-            entityManager.merge(exchangeRate);
-        else
-            entityManager.persist(exchangeRate);
+        entityManager.persist(exchangeRate);
     }
 
-    private boolean exchangeRateExists(ExchangeRate exchangeRate) {
+    @Override
+    public boolean isExists(LocalDate date, String currency) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<ExchangeRate> criteriaQuery = criteriaBuilder.createQuery(ExchangeRate.class);
         Root<ExchangeRate> root = criteriaQuery.from(ExchangeRate.class);
-        criteriaQuery.where(criteriaBuilder.equal(root.get("date"), exchangeRate.getDate()), criteriaBuilder.equal(root.get("currency"), exchangeRate.getCurrency()));
+        criteriaQuery.where(criteriaBuilder.equal(root.get("date"), date), criteriaBuilder.equal(root.get("currency"), currency));
         TypedQuery<ExchangeRate> query = entityManager.createQuery(criteriaQuery);
         return !query.getResultList().isEmpty();
     }
+
+    @Override
+    public void update(ExchangeRate exchangeRate) {
+        entityManager.merge(exchangeRate);
+    }
+
 }

@@ -22,7 +22,7 @@ public class JPAExchangeCatalog implements ExchangeCatalog {
         query.setParameter("date", date);
         query.setParameter("currency", currency);
         if (query.getResultList().isEmpty())
-            throw new NoRateException("no found rate");
+            throw new NoRateException("No rate found");
         else {
             ExchangeRate exchangeRate = (ExchangeRate) query.getResultList().get(0);
             ExchangeRateDto exchangeRateDto = createRateDto(exchangeRate);
