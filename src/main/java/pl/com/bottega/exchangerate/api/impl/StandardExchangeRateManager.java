@@ -1,17 +1,17 @@
 package pl.com.bottega.exchangerate.api.impl;
 
 import org.springframework.transaction.annotation.Transactional;
-import pl.com.bottega.exchangerate.api.ExchangeRatePanel;
+import pl.com.bottega.exchangerate.api.ExchangeRateManager;
 import pl.com.bottega.exchangerate.domain.ExchangeRate;
 import pl.com.bottega.exchangerate.domain.ExchangeRepository;
 import pl.com.bottega.exchangerate.domain.commands.CreateExchangeRateCommand;
 
 @Transactional
-public class StandardExchangeRatePanel implements ExchangeRatePanel {
+public class StandardExchangeRateManager implements ExchangeRateManager {
 
     private ExchangeRepository exchangeRepository;
 
-    public StandardExchangeRatePanel(ExchangeRepository exchangeRepository) {
+    public StandardExchangeRateManager(ExchangeRepository exchangeRepository) {
         this.exchangeRepository = exchangeRepository;
     }
 

@@ -1,14 +1,10 @@
 package pl.com.bottega.exchangerate.domain.commands;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class CreateExchangeRateCommand implements Validatable {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String currency;
     private BigDecimal rate;
@@ -37,11 +33,6 @@ public class CreateExchangeRateCommand implements Validatable {
             errors.add("rate", "is required");
         if (rate != null && (rate.compareTo(BigDecimal.ZERO) < 0))
             errors.add("rate", "must be > than 0.0");
-    }
-
-    @Override
-    public boolean isEmpty(String s) {
-        return s == null || s.isEmpty();
     }
 
 }
