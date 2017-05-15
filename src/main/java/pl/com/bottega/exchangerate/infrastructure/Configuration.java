@@ -1,11 +1,11 @@
 package pl.com.bottega.exchangerate.infrastructure;
 
 import org.springframework.context.annotation.Bean;
-import pl.com.bottega.exchangerate.api.ExchangeCalculator;
+import pl.com.bottega.exchangerate.api.ExchangeRateCalculator;
 import pl.com.bottega.exchangerate.api.ExchangeCatalog;
-import pl.com.bottega.exchangerate.api.impl.StandardAdminPanel;
-import pl.com.bottega.exchangerate.api.AdminPanel;
-import pl.com.bottega.exchangerate.api.impl.StandardExchangeCalculator;
+import pl.com.bottega.exchangerate.api.impl.StandardExchangeRatePanel;
+import pl.com.bottega.exchangerate.api.ExchangeRatePanel;
+import pl.com.bottega.exchangerate.api.impl.StandardExchangeRateCalculator;
 import pl.com.bottega.exchangerate.domain.ExchangeRepository;
 
 @org.springframework.context.annotation.Configuration
@@ -21,15 +21,14 @@ public class Configuration {
         return new JPAExchangeCatalog();
     }
 
-
     @Bean
-    public ExchangeCalculator exchangeCalculator(ExchangeRepository exchangeRepository, ExchangeCatalog exchangeCatalog) {
-        return new StandardExchangeCalculator(exchangeRepository, exchangeCatalog);
+    public ExchangeRateCalculator exchangeCalculator(ExchangeRepository exchangeRepository, ExchangeCatalog exchangeCatalog) {
+        return new StandardExchangeRateCalculator(exchangeRepository, exchangeCatalog);
     }
 
     @Bean
-    public AdminPanel adminPanel(ExchangeRepository exchangeRepository) {
-        return new StandardAdminPanel(exchangeRepository);
+    public ExchangeRatePanel adminPanel(ExchangeRepository exchangeRepository) {
+        return new StandardExchangeRatePanel(exchangeRepository);
     }
 
 }

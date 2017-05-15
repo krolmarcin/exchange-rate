@@ -1,10 +1,8 @@
 package pl.com.bottega.exchangerate.api;
 
-import pl.com.bottega.exchangerate.api.ExchangeCalculationResult;
-import pl.com.bottega.exchangerate.domain.commands.CalculateExchangeCommand;
 import pl.com.bottega.exchangerate.domain.commands.CreateExchangeRateCommand;
 
-public interface AdminPanel {
+public interface ExchangeRatePanel {
 
     void createExchangeRate(CreateExchangeRateCommand cmd);
 

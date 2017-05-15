@@ -23,7 +23,7 @@ public class JPAExchangeRateRepository implements ExchangeRepository {
     }
 
     @Override
-    public boolean isExists(LocalDate date, String currency) {
+    public boolean exist(LocalDate date, String currency) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<ExchangeRate> criteriaQuery = criteriaBuilder.createQuery(ExchangeRate.class);
         Root<ExchangeRate> root = criteriaQuery.from(ExchangeRate.class);
