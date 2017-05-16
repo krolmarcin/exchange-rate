@@ -18,12 +18,10 @@ public class StandardExchangeRateManager implements ExchangeRateManager {
     @Override
     public void createExchangeRate(CreateExchangeRateCommand cmd) {
         ExchangeRate exchangeRate = new ExchangeRate(cmd);
-        updateExistPutAbsent(cmd, exchangeRate);
-    }
-
-    private void updateExistPutAbsent(CreateExchangeRateCommand cmd, ExchangeRate exchangeRate) {
         if (exchangeRepository.exist(cmd.getDate(), cmd.getCurrency())) {
-            exchangeRepository.update(exchangeRate);
+            ExchangeRate eR = exchangeRepository.find(cmd.getDate(), cmd.getCurrency());
+            eR.setRate(cmd.getRate());
+            exchangeRepository.update(eR);
         } else {
             exchangeRepository.put(exchangeRate);
         }

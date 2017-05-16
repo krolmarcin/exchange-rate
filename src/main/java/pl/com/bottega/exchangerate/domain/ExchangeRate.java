@@ -37,6 +37,10 @@ public class ExchangeRate {
         this.rate = cmd.getRate();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -49,4 +53,19 @@ public class ExchangeRate {
         return rate;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
 }
