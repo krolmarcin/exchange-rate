@@ -14,12 +14,12 @@ import java.time.LocalDate;
 public class JPAExchangeRateRepository implements ExchangeRepository {
 
     @PersistenceContext
-    public EntityManager entityManager;
+    private EntityManager entityManager;
 
 
     @Override
-    public void put(ExchangeRate exchangeRate) {
-        entityManager.persist(exchangeRate);
+    public void put(ExchangeRate e) {
+        entityManager.persist(e);
     }
 
     @Override

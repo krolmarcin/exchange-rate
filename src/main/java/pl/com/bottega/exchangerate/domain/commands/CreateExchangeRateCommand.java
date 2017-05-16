@@ -13,12 +13,24 @@ public class CreateExchangeRateCommand implements Validatable {
         return date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public String getCurrency() {
         return currency;
     }
 
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
     public BigDecimal getRate() {
         return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
     }
 
     @Override

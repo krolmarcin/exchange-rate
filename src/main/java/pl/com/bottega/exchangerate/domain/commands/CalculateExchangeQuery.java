@@ -60,7 +60,6 @@ public class CalculateExchangeQuery implements Validatable {
             errors.add("from", "must be different than to");
             errors.add("to", "must be different than from");
         }
-
     }
 
 }

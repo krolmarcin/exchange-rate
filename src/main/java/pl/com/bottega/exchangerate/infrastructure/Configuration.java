@@ -22,12 +22,12 @@ public class Configuration {
     }
 
     @Bean
-    public ExchangeRateCalculator exchangeCalculator(ExchangeRepository exchangeRepository, ExchangeCatalog exchangeCatalog) {
-        return new StandardExchangeRateCalculator(exchangeRepository, exchangeCatalog);
+    public ExchangeRateCalculator exchangeCalculator(ExchangeCatalog exchangeCatalog) {
+        return new StandardExchangeRateCalculator(exchangeCatalog);
     }
 
     @Bean
-    public ExchangeRateManager adminPanel(ExchangeRepository exchangeRepository) {
+    public ExchangeRateManager exchangeRateManager(ExchangeRepository exchangeRepository) {
         return new StandardExchangeRateManager(exchangeRepository);
     }
 

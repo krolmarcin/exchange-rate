@@ -1,6 +1,7 @@
 package pl.com.bottega.exchangerate.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.Parser;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.com.bottega.exchangerate.domain.commands.CreateExchangeRateCommand;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Digits;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class ExchangeRate {
@@ -19,8 +21,8 @@ public class ExchangeRate {
     @GeneratedValue
     private Long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
+
     private String currency;
 
     @Digits(integer = 5, fraction = 4)

@@ -14,13 +14,11 @@ import java.math.MathContext;
 import java.time.LocalDate;
 
 @Transactional
-public class StandardExchangeRateCalculator implements ExchangeRateCalculator, Validatable {
+public class StandardExchangeRateCalculator implements ExchangeRateCalculator {
 
-    private ExchangeRepository exchangeRepository;
     private ExchangeCatalog exchangeCatalog;
 
-    public StandardExchangeRateCalculator(ExchangeRepository exchangeRepository, ExchangeCatalog exchangeCatalog) {
-        this.exchangeRepository = exchangeRepository;
+    public StandardExchangeRateCalculator(ExchangeCatalog exchangeCatalog) {
         this.exchangeCatalog = exchangeCatalog;
     }
 
@@ -45,7 +43,7 @@ public class StandardExchangeRateCalculator implements ExchangeRateCalculator, V
             calculatedAmount = amount.multiply(rate);
         }
 
-        if (!(from.equals("PLN") && !(to.equals("PLN")))) {
+        if (!(from.equals("PLN")) && !(to.equals("PLN"))) {
             ExchangeRateDto exchangeRateDtoFrom = exchangeCatalog.get(date, from);
             BigDecimal rateFrom = exchangeRateDtoFrom.getRate();
             ExchangeRateDto exchangeRateDtoTo = exchangeCatalog.get(date, to);
@@ -55,8 +53,4 @@ public class StandardExchangeRateCalculator implements ExchangeRateCalculator, V
         return new ExchangeCalculationResult(from, to, amount, calculatedAmount, date);
     }
 
-    @Override
-    public void validate(ValidationErrors errors) {
-
-    }
 }

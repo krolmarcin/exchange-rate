@@ -65,4 +65,5 @@ public class ExchangeCalculationResult {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
 }
