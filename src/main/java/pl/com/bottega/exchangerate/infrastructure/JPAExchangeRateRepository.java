@@ -29,23 +29,15 @@ public class JPAExchangeRateRepository implements ExchangeRepository {
         Root<ExchangeRate> root = criteriaQuery.from(ExchangeRate.class);
         criteriaQuery.where(criteriaBuilder.equal(root.get("date"), date), criteriaBuilder.equal(root.get("currency"), currency));
         TypedQuery<ExchangeRate> query = entityManager.createQuery(criteriaQuery);
-        return query.getResultList().get(0);
+        if (query.getResultList().isEmpty())
+            return null;
+        else
+            return query.getSingleResult();
     }
 
     @Override
-    public boolean exist(LocalDate date, String currency) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<ExchangeRate> criteriaQuery = criteriaBuilder.createQuery(ExchangeRate.class);
-        Root<ExchangeRate> root = criteriaQuery.from(ExchangeRate.class);
-        criteriaQuery.where(criteriaBuilder.equal(root.get("date"), date), criteriaBuilder.equal(root.get("currency"), currency));
-        TypedQuery<ExchangeRate> query = entityManager.createQuery(criteriaQuery);
-        return !query.getResultList().isEmpty();
-    }
-
-
-    @Override
-    public void update(ExchangeRate exchangeRate) {
-        entityManager.merge(exchangeRate);
+    public void update(ExchangeRate e) {
+        entityManager.merge(e);
     }
 
 }

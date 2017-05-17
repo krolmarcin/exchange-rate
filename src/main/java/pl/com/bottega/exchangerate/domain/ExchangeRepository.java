@@ -10,7 +10,5 @@ public interface ExchangeRepository {
 
     void update(ExchangeRate exchangeRate);
 
-    boolean exist(LocalDate date, String currency);
-
 }
 

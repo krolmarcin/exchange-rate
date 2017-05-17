@@ -17,14 +17,22 @@ public class StandardExchangeRateManager implements ExchangeRateManager {
 
     @Override
     public void createExchangeRate(CreateExchangeRateCommand cmd) {
-        ExchangeRate exchangeRate = new ExchangeRate(cmd);
-        if (exchangeRepository.exist(cmd.getDate(), cmd.getCurrency())) {
-            ExchangeRate eR = exchangeRepository.find(cmd.getDate(), cmd.getCurrency());
-            eR.setRate(cmd.getRate());
-            exchangeRepository.update(eR);
+        ExchangeRate exchangeRateFind = findExchangeRate(cmd);
+        updateIfExistCreateIfAbsent(cmd, exchangeRateFind);
+    }
+
+    private void updateIfExistCreateIfAbsent(CreateExchangeRateCommand cmd, ExchangeRate exchangeRateFind) {
+        if (exchangeRateFind != null) {
+            exchangeRateFind.setRate(cmd.getRate());
+            exchangeRepository.update(exchangeRateFind);
         } else {
+            ExchangeRate exchangeRate = new ExchangeRate(cmd);
             exchangeRepository.put(exchangeRate);
         }
+    }
+
+    private ExchangeRate findExchangeRate(CreateExchangeRateCommand cmd) {
+        return exchangeRepository.find(cmd.getDate(), cmd.getCurrency());
     }
 
 }
