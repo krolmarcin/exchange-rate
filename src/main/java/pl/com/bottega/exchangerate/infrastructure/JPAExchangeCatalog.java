@@ -25,8 +25,7 @@ public class JPAExchangeCatalog implements ExchangeCatalog {
             throw new NoRateException("No rate found");
         else {
             ExchangeRate exchangeRate = (ExchangeRate) query.getResultList().get(0);
-            ExchangeRateDto exchangeRateDto = createRateDto(exchangeRate);
-            return exchangeRateDto;
+            return createRateDto(exchangeRate);
         }
     }
 
@@ -37,4 +36,5 @@ public class JPAExchangeCatalog implements ExchangeCatalog {
         exchangeRateDto.setRate(exchangeRate.getRate());
         return exchangeRateDto;
     }
+
 }
